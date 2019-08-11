@@ -1,0 +1,15 @@
+/* tslint:disable no-unused-expression newline-per-chained-call */
+import index from './index'
+
+describe('permission/index', () => {
+  it('should export an object with `types` and `resolvers`', (done: () => void) => {
+    expect(index).toHaveProperty('types')
+    expect(index).toHaveProperty('resolvers')
+    done()
+  })
+
+  it('should have a Query property on the resolvers', (done: () => void) => {
+    expect(index.resolvers).toHaveProperty('Query')
+    done()
+  })
+})

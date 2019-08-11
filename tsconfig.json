@@ -1,0 +1,36 @@
+{
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts",
+        "test"
+    ],
+    "compilerOptions": {
+        "lib": [
+            "es5",
+            "es6",
+            "esnext",
+            "dom"
+        ],
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "removeComments": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "rootDir": "src",
+        "baseUrl": "./",
+        "outDir": "dist",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "resolveJsonModule": true
+    },
+    "awesomeTypescriptLoaderOptions": {
+        "useCache": true,
+        "transpileOnly": true
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "extends": [
+        "@altamir/standards-tslint"
+    ],
+    "linterOptions": {
+        "exclude": [
+            "src/api/migrations/**/*"
+        ]
+    }
+}
