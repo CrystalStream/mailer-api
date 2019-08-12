@@ -6,9 +6,13 @@ import { subscriptions } from './scheduledMessage.subscriptions'
 import * as uuid from 'uuid'
 import * as moment from 'moment'
 
+import sendMail, { IMailerHTML } from '../../../config/mailer'
+import { templates } from '../../../config/mailer/templateParser'
+
 const Mutation = gql`
   extend type Mutation {
     createScheduledMessage(messageData: ScheduledMessageInput!): ScheduledMessage
+    reviewRequest(emailData: ReviewRequestData): Boolean
   }
 `
 
@@ -35,6 +39,27 @@ export const mutationResolvers = {
       await scheduledMessage.save()
       pubsub.publish(subscriptions.SCHEDULEDMESSAGE_ADDED, scheduledMessage)
       return scheduledMessage
+    },
+    async reviewRequest(obj, { messageData }, context, info) {
+      console.log('messageData', messageData)
+      console.log('obj', obj)
+
+      const data: IMailerHTML<any> = {
+        to: 'tpll5wiiajplpxd6@ethereal.email',
+        subject: 'Review Request!',
+        template: templates.reviewRequest,
+        params: {
+          link: 'https://altamir.io',
+        },
+      }
+      sendMail(data, (err, body) => {
+        if (err) {
+          throw err
+        } else {
+          console.log('Email successfully sent')
+        }
+      })
+      return true
     },
   },
 }
